@@ -33,7 +33,7 @@ class DingTalkMcChat(models.Model):
     useridlist = fields.Many2many(comodel_name='hr.employee', relation='dingtalk_chat_and_hr_employee_rel',
                                   column1='chat_id', column2='emp_id', string='群成员', required=True)
     state = fields.Selection(string='状态', selection=[('new', '新建'), ('normal', '已建立'), ('close', '解散')],
-                             default='new', track_visibility='onchange')
+                             default='new', tracking=True)
     channel_ids = fields.Many2many(comodel_name='mail.channel', relation='dingtalk_chat_and_mail_channel_rel',
                                    column1='chat_id', column2='mail_id', string='关注频道')
     model_ids = fields.Many2many(comodel_name='ir.model', relation='dingtalk_chat_and_ir_model_rel',

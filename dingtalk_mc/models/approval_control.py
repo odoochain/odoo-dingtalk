@@ -25,7 +25,7 @@ class DingTalkApprovalControl(models.Model):
         odoo_cls += [model.model for model in self.env['ir.model'].search([('transient', '=', True)])]        # 排除临时对象
         return [('model', 'not in', odoo_cls)]
 
-    name = fields.Char('名称', required=1, track_visibility='onchange')
+    name = fields.Char('名称', required=1, tracking=True)
     company_id = fields.Many2one('res.company', string=u'公司', default=lambda self: self.env.company)
     oa_model_id = fields.Many2one('ir.model', string=u'Odoo模型', index=True, ondelete="set null", domain=_compute_domain)
     template_id = fields.Many2one('dingtalk.approval.template', string=u'审批模板', index=True, ondelete="set null", domain="[('company_id', '=', company_id)]")
@@ -221,7 +221,7 @@ class DingTalkApprovalControlLine(models.Model):
     model_id = fields.Many2one(comodel_name='ir.model', string=u'Odoo模型', related="control_id.oa_model_id")
     field_id = fields.Many2one(comodel_name='ir.model.fields', string=u'模型字段',
                                domain="[('model_id', '=', model_id), ('ttype', 'not in', ['binary', 'boolean'])]")
-    ttype = fields.Selection(selection='_get_field_types', string=u'字段类型')
+    ttype = fields.Selection(string=u'字段类型')
     dd_field = fields.Char(string='钉钉单据字段名')
     is_dd_id = fields.Boolean(string=u'为关联组件?', help="通常用于钉钉表单上选择的是钉钉提供的组件，比如部门,就需要传递部门id而不是名称")
     list_ids = fields.One2many(comodel_name='dingtalk.approval.control.list', inverse_name='line_id', string=u'一对多列表字段')

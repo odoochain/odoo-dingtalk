@@ -2,11 +2,11 @@
 {
     'name': "Odoo集成钉钉-多公司",
     'summary': """支持多个钉钉企业到Odoo进行信息管理""",
-    'description': """支持多个钉钉企业到Odoo进行信息管理""",
-    'author': "XueFeng.Su",
-    'website': "https://www.sxfblog.com",
+    'description': """支持多个钉钉企业到Odoo进行信息管理，=>下步开发微信""",
+    'author': "XueFeng.Su,Odoochain,imtoohard",
+    'website': "https://www.odoochain.com",
     'category': 'dingtalk',
-    'version': '12.1.2',
+    'version': '14.0.1.0.0',
     'depends': ['base', 'hr', 'mail', 'auth_oauth'],
     'external_dependencies': {
         'python': ['pypinyin', 'pycryptodome', 'dingtalk-sdk'],
